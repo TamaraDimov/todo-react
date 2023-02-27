@@ -1,5 +1,4 @@
-/* eslint-disable react/require-default-props */
-import { useState } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
 const InputTodo = ({ addTodoItem }) => {
@@ -9,6 +8,7 @@ const InputTodo = ({ addTodoItem }) => {
   const handleChange = (e) => {
     setTitle(e.target.value);
   };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (title.trim()) {
@@ -21,26 +21,26 @@ const InputTodo = ({ addTodoItem }) => {
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
+    <>
+      <form onSubmit={handleSubmit} className="form-container">
         <input
-          className="inputField"
           type="text"
           placeholder="Add Todo..."
           value={title}
           onChange={handleChange}
+          className="input-text"
         />
-        <button className="submit" type="button" onClick={handleSubmit}>
+        <button type="submit" className="input-submit">
           Submit
         </button>
       </form>
-      <span>{message}</span>
-    </div>
+      <span className="submit-warning">{message}</span>
+    </>
   );
 };
 
 InputTodo.propTypes = {
-  addTodoItem: PropTypes.func,
+  addTodoItem: PropTypes.func.isRequired,
 };
 
 export default InputTodo;
